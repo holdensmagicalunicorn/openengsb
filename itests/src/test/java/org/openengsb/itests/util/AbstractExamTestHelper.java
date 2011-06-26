@@ -22,11 +22,12 @@ import static org.junit.Assert.assertThat;
 import static org.ops4j.pax.exam.CoreOptions.felix;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
+import static org.ops4j.pax.exam.CoreOptions.scanFeatures;
+import static org.ops4j.pax.exam.CoreOptions.systemProperty;
+import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.CoreOptions.waitForFrameworkStartup;
+import static org.ops4j.pax.exam.CoreOptions.workingDirectory;
 import static org.ops4j.pax.exam.OptionUtils.combine;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.scanFeatures;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.vmOption;
-import static org.ops4j.pax.exam.container.def.PaxRunnerOptions.workingDirectory;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,6 +49,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Inject;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.junit.Configuration;
@@ -220,7 +222,7 @@ public abstract class AbstractExamTestHelper extends AbstractIntegrationTest {
 
     @Configuration
     public static Option[] configuration() throws Exception {
-        Option[] baseOptions = Helper.getDefaultOptions();
+        Option[] baseOptions = new Option[0]; // KarafHelper.getDefaultOptions();
         /*
          * do not change the values for loglevel or debug here, but refer the comment at the top of the class for
          * further instructions
@@ -242,8 +244,10 @@ public abstract class AbstractExamTestHelper extends AbstractIntegrationTest {
         FileUtils.deleteDirectory(new File(targetpath, "karaf.data"));
         return combine(
             baseOptions,
-            Helper.loadKarafStandardFeatures("config", "management"),
-            Helper.setLogLevel(loglevel),
+            scanFeatures(
+                maven().groupId("org.apache.karaf.assemblies.features").artifactId("standard").type("xml")
+                    .classifier("features").versionAsInProject(), "karaf-framework", "config", "management"),
+            systemProperty("org.ops4j.pax.logging.DefaultServiceLog.level").value(loglevel),
             mavenBundle(maven().groupId("org.apache.aries").artifactId("org.apache.aries.util")
                 .versionAsInProject()),
             mavenBundle(maven().groupId("org.apache.aries.proxy").artifactId("org.apache.aries.proxy")

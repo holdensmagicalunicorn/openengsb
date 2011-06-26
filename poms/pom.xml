@@ -83,7 +83,7 @@
     <jaxws.api.version>1.8.0</jaxws.api.version>
     <jsr311.api.version>1.8.0</jsr311.api.version>
     <aspectj.version>1.6.8.RELEASE</aspectj.version>
-    <pax.exam.version>1.2.4</pax.exam.version>
+    <pax.exam.version>2.1.0</pax.exam.version>
     <saaj.api.version>1.8.0</saaj.api.version>
     <saaj.impl.version>1.3.2_2</saaj.impl.version>
     <htmlunit.version>2.8</htmlunit.version>
@@ -589,13 +589,13 @@
       </dependency>
       <dependency>
         <groupId>org.ops4j.pax.exam</groupId>
-        <artifactId>pax-exam-container-default</artifactId>
+        <artifactId>pax-exam-container-paxrunner</artifactId>
         <version>${pax.exam.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.ops4j.pax.exam</groupId>
-        <artifactId>pax-exam-junit</artifactId>
+        <artifactId>pax-exam-junit4</artifactId>
         <version>${pax.exam.version}</version>
         <scope>test</scope>
       </dependency>

@@ -226,6 +226,20 @@
       <groupId>org.apache.karaf.tooling</groupId>
       <artifactId>org.apache.karaf.tooling.testing</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.ops4j.pax.exam</groupId>
+          <artifactId>pax-exam-junit</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ops4j.pax.exam</groupId>
+          <artifactId>pax-exam-junit-extender</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ops4j.pax.exam</groupId>
+          <artifactId>pax-exam-container-default</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- Drools Dependencies -->
@@ -263,12 +277,39 @@
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
-      <artifactId>pax-exam-container-default</artifactId>
+      <artifactId>pax-exam-container-paxrunner</artifactId>
+      <version>${pax.exam.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
-      <artifactId>pax-exam-junit</artifactId>
+      <artifactId>pax-exam-junit4</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-link-assembly</artifactId>
+      <version>${pax.exam.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-spi</artifactId>
+      <version>${pax.exam.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.runner</groupId>
+      <artifactId>pax-runner-no-jcl</artifactId>
+      <version>1.7.4</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-testforge</artifactId>
+      <version>${pax.exam.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
