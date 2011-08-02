@@ -1,0 +1,6 @@
+Please be aware that this version does only works with a patched drools version. You need to 
+
+a) git clone git@github.com:anpieber/drools.git
+b) cd drools
+c) mvn clean install -Dmaven.test.skip=true
+d) build the openengsb
